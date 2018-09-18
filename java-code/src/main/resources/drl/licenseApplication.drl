@@ -1,0 +1,17 @@
+package com.pan.drl
+
+rule "licenseApplication"
+    when
+        $a:Applicant( age <18)
+    then
+        $a.setValid(false);
+        System.out.println("this is a invalid applicant");
+    end
+
+rule "test02"
+    when
+        $a:Applicant(age >=18)
+    then
+        $a.setValid(true);
+        System.out.println("'xxx");
+     end

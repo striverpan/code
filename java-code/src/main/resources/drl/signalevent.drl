@@ -1,0 +1,9 @@
+package com.pan.drl
+
+
+rule "signal"
+    when
+        Number(doubleValue > 100.0 ) from accumulate( SignalEvent($s:s1) over window:time(6m) from entry-point "signal-event",average($s))
+    then
+        System.out.println("xxxxxx");
+    end

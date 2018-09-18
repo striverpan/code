@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true" scan="true" scanPeriod="60 seconds">
+    <contextName>logback</contextName>
+    <!-- 输出路径 -->
+    <property name="log.dir" value="${catalina.home}/logs"/>
+    <property name ="encoding" value="UTF-8"/>
+    <!--输出格式-->
+    <property name="log-pattern" value="%d{yy-MM-dd.HH:mm:ss,GMT+8}|[%thread]|%-5level|%logger{35}.%M:%L|%msg%n"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${log-pattern}</pattern>
+        </encoder>
+        <!-- 阈值过滤，就是log行为级别过滤，debug及debug以上的信息会被打印出来 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+    </appender>
+
+    <!-- 滚动日志 INFO-->
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <encoder>
+            <pattern>${log-pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <!-- 滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.dir}/info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 最大历史30天-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 滚动日志 DEBUG-->
+    <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <encoder>
+            <pattern>${log-pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <!-- 滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.dir}/debug.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 最大历史30天-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+
+    <!-- 自定义logger-->
+    <logger name="com.pan" level="info" additivity="false">
+        <appender-ref ref="INFO"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <!-- 自定义logger  指定debug目录下的文件-->
+    <!-- 用于指定特殊jar包 java类下的日志-->
+    <logger name="com.pan.util.log.debug" level="debug" additivity="false">
+        <appender-ref ref="DEBUG"/>
+    </logger>
+
+
+    <!--上面logger 没有接管的日志 root接管-->
+    <root level="debug">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="INFO"/>
+    </root>
+
+</configuration>
