@@ -18,8 +18,9 @@ public class NewKafKaConsumer {
         consumer.subscribe(Arrays.asList("test"));
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(100);
-            for (ConsumerRecord<String, String> record : records)
+            for (ConsumerRecord<String, String> record : records) {
                 printRecord(record);
+            }
         }
     }
 

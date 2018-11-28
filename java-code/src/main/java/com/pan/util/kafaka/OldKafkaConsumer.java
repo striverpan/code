@@ -33,6 +33,7 @@ public class OldKafkaConsumer extends Thread {
         return new ConsumerConfig(props);
     }
 
+    @Override
     public void run() {
         Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
         topicCountMap.put(topic, new Integer(1));

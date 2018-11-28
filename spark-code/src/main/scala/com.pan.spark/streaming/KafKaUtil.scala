@@ -50,7 +50,7 @@ object KafKaUtil {
   def getCusumer(): KafkaConsumer[String, String] = {
 
     val props = new HashMap[String, Object]()
-    props.put("bootstrap.servers", "127.0.0.1:9092")
+    props.put("bootstrap.servers", "192.25.105.51:9092")
     props.put("group.id", "pan")
     props.put("enable.auto.commit", "true")
     props.put("auto.commit.interval.ms", "1000")
@@ -63,7 +63,7 @@ object KafKaUtil {
     new Thread(new Runnable {
       override def run(): Unit = {
         val consumer = getCusumer()
-        consumer.subscribe(Arrays.asList("test"))
+        consumer.subscribe(Arrays.asList("lzj-t"))
         while (true) {
           val records: ConsumerRecords[String, String] = consumer.poll(100)
           val it: util.Iterator[ConsumerRecord[String, String]] = records.iterator()
@@ -77,8 +77,8 @@ object KafKaUtil {
 
 
   def main(args: Array[String]): Unit = {
-    sendKakfaMessage()
-    //customeMessage()
+    //sendKakfaMessage()
+    customeMessage()
   }
 
 }

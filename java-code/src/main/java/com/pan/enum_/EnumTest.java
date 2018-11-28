@@ -14,19 +14,32 @@ public class EnumTest {
         Apple a = Apple.a;
 
         switch (a) {
-            case b: System.out.println("b");break;
-            case a: System.out.println("a");break;
-            case c: System.out.println("c");break;
+            case b:
+                System.out.println("b");
+                break;
+            case a:
+                System.out.println("a");
+                break;
+            case c:
+                System.out.println("c");
+                break;
+            default:
+                break;
         }
 
-        String s = "xx" ;
+        String s = "xx";
         switch (s) {
             case "aa":
                 System.out.println("aa");
+                break;
             case "bb":
                 System.out.println("bb");
+                break;
             case "xx":
                 System.out.println("xx");
+                break;
+            default:
+                break;
         }
     }
 }

@@ -21,7 +21,7 @@ public class DateUtill {
 
 
         for (int i=0;i<1000;i++){
-            System.out.println(Math.random() + String.valueOf(new Date().getTime()));
+            System.out.println(Math.random() + String.valueOf(System.currentTimeMillis()));
         }
     }
 }

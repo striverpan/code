@@ -32,6 +32,7 @@ public class SignalEvent {
         return this.c_p1_11_0;
     }
 
+    @Override
     public String toString() {
         return "SignalEvent(c_p1_11_0=" + this.c_p1_11_0 + "," + "trainData=" + this.trainData.toString() + "}";
     }

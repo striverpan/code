@@ -79,7 +79,7 @@ public class ReadCsvFile {
                     if (cell == null) {
                         cell = " ";
                     }
-                    if (cell.equals("(null)")) {
+                    if ("(null)".equals(cell)) {
                         cell = null;
                         sql += cell;
                         sql += ",";
